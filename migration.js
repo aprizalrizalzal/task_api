@@ -1,16 +1,49 @@
 require('dotenv').config();
 
-var mysql = require('mysql');
-var migration = require('mysql-migrations');
+const fs = require('fs');
+const mysql = require('mysql');
+const migration = require('mysql-migrations');
 
-var connection = mysql.createPool({
-  connectionLimit : 10,
-  host     : process.env.DB_HOST,
-  user     : process.env.DB_USER,
-  password : process.env.DB_PASSWORD,
-  database : process.env.DB_DATABASE,
+const migrationsPath = __dirname + '/migrations';
+
+if (!fs.existsSync(migrationsPath)) {
+  fs.mkdirSync(migrationsPath);
+  console.log("Folder 'migrations' created.");
+} else {
+  console.log("Folder 'migrations' already exists.");
+}
+
+const initialConnection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
 });
 
-migration.init(connection, __dirname + '/migrations', function() {
-  console.log("finished running migrations");
+const databaseName = process.env.DB_DATABASE;
+
+initialConnection.query(`CREATE DATABASE IF NOT EXISTS \`${databaseName}\`;`, function(err) {
+  if (err) {
+    console.error("Error creating database:", err.message);
+    process.exit(1); // Keluar dari proses jika terjadi error
+  } else {
+    console.log(`Database '${databaseName}' checked/created successfully.`);
+  }
+
+  initialConnection.end((endErr) => {
+    if (endErr) {
+      console.error("Error closing initial connection:", endErr.message);
+    }
+  });
+
+  const connection = mysql.createPool({
+    connectionLimit: 10,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: databaseName,
+  });
+
+  migration.init(connection, migrationsPath, function() {
+    console.log("Finished running migrations");
+  });
 });

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "migrate:add": "node migration.js add migration",
+    "migrate:up": "node migration.js up",
+    "migrate:down": "node migration.js down",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -10,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "mysql": "^2.18.1",
     "mysql-migrations": "^1.0.7"
   }
