@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "d780fa8b-1cb6-4108-96a7-1e435ab9b9c8",
+		"name": "Lombok Asap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13622299"
+	},
+	"item": [
+		{
+			"name": "postTasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Tugas berhasil ditambahkan\", function () {\r",
+							"    pm.response.to.have.status(201); // Memastikan status HTTP 200\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id\", jsonData.data.id); "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Test tugas\",\r\n    \"description\": \"Test deskripsi tugas\",\r\n    \"due_date\": \"2024-11-06\",\r\n    \"status\": \"in progress\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/tasks",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTasks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/tasks",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "due_date",
+							"value": "2024-11-06",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "in progress",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTasksById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/tasks/{{id}}",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"tasks",
+						"{{id}}"
+					],
+					"query": [
+						{
+							"key": "due_date",
+							"value": "2024-11-06",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "in progress",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putTasksById",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Test tugas edit\",\r\n    \"description\": \"Test deskripsi tugas edit\",\r\n    \"due_date\": \"2024-11-07\",\r\n    \"status\": \"in progress\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/tasks/{{id}}",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"tasks",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTasksById",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/tasks/{{id}}",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"tasks",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
