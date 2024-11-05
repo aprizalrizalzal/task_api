@@ -142,6 +142,7 @@ npm run start:dev
 
 2. **Impor Environment**
    - Impor environment dari folder postman dengan nama file `Lombok Asap.postman_environment`.
+   - Untuk environment, parameter {{id}} akan terisi setelah melakukan permintaan POST.
 
 3. **Pengujian Endpoint**
    - Uji endpoint untuk menambahkan, melihat, memperbarui, dan menghapus task.
