@@ -42,7 +42,7 @@ class TasksService {
   // Fungsi untuk mengambil tugas berdasarkan status dan due_date
   async getTasks({ status, due_date } = {}) {
     let query = `
-      SELECT id, title, description, due_date, status FROM tasks
+      SELECT * FROM tasks
     `;
     const queryParams = [];
     const conditions = [];
@@ -79,7 +79,7 @@ class TasksService {
   // Fungsi untuk mengambil tugas berdasarkan ID
   async getTasksById(taskId) {
     const query = `
-      SELECT id, title, description, due_date, status FROM tasks WHERE id = ?
+      SELECT * FROM tasks WHERE id = ?
     `;
   
     return new Promise((resolve, reject) => {
@@ -99,6 +99,8 @@ class TasksService {
           description: task.description,
           due_date: task.due_date,
           status: task.status,
+          created_at: task.created_at,
+          updated_at: task.updated_at,
         });
       });
     });
@@ -127,7 +129,7 @@ class TasksService {
             title,
             description,
             due_date,
-            status,
+            status
         });
       });
     });
