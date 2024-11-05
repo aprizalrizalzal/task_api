@@ -24,7 +24,7 @@ const databaseName = process.env.DB_DATABASE;
 initialConnection.query(`CREATE DATABASE IF NOT EXISTS \`${databaseName}\`;`, function(err) {
   if (err) {
     console.error("Error creating database:", err.message);
-    process.exit(1); // Keluar dari proses jika terjadi error
+    process.exit(1);
   } else {
     console.log(`Database '${databaseName}' checked/created successfully.`);
   }
@@ -35,7 +35,7 @@ initialConnection.query(`CREATE DATABASE IF NOT EXISTS \`${databaseName}\`;`, fu
     }
   });
 
-  const connection = mysql.createPool({
+  const pool = mysql.createPool({
     connectionLimit: 10,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -43,7 +43,9 @@ initialConnection.query(`CREATE DATABASE IF NOT EXISTS \`${databaseName}\`;`, fu
     database: databaseName,
   });
 
-  migration.init(connection, migrationsPath, function() {
+  migration.init(pool, migrationsPath, function() {
     console.log("Finished running migrations");
   });
+
+  module.exports = pool; 
 });
