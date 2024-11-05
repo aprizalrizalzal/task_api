@@ -138,10 +138,10 @@ npm run start:dev
 ## Pengujian API dengan Postman
 
 1. **Impor Koleksi Postman**
-   - Impor koleksi dari folder Postman dengan nama file `Lombok Asap.postman_collection`.
+   - Impor koleksi dari folder postman dengan nama file `Lombok Asap.postman_collection`.
 
 2. **Impor Environment**
-   - Impor environment dari folder Postman dengan nama file `Lombok Asap.postman_environment`.
+   - Impor environment dari folder postman dengan nama file `Lombok Asap.postman_environment`.
 
 3. **Pengujian Endpoint**
    - Uji endpoint untuk menambahkan, melihat, memperbarui, dan menghapus task.
