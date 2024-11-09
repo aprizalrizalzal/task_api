@@ -57,8 +57,8 @@ Task Management API, dibuat menggunakan Node.js dan menggunakan MySQL sebagai da
    ```
    
 ## Dependensi Utama
-| Package               | Version                                      | Keterangan                                 |
-|-----------------------|----------------------------------------------|--------------------------------------------|
+| Package                                                              | Version   | Keterangan                     |
+|----------------------------------------------------------------------|-----------|--------------------------------|
 | [`@hapi/hapi`]((https://www.npmjs.com/package/@hapi/hapi))           | 21.3.12   | Server framework untuk Node.js |
 | [`dotenv`](https://www.npmjs.com/package/dotenv)                     | 16.4.5    | Manajemen variabel lingkungan  |
 | [`joi`](https://www.npmjs.com/package/joi)                           | 17.13.3   | Validasi skema data            |
@@ -69,7 +69,7 @@ Task Management API, dibuat menggunakan Node.js dan menggunakan MySQL sebagai da
 ## Dependensi Pengembangan
 | Package                                            | Version   | Keterangan                 |
 |----------------------------------------------------|-----------|----------------------------|
-| [`nodemon`](https://www.npmjs.com/package/nodemon) | 21.3.12   | [Untuk proses pengembangan |
+| [`nodemon`](https://www.npmjs.com/package/nodemon) | 21.3.12   | Untuk proses pengembangan |
 
 ## Menjalankan Server
 
